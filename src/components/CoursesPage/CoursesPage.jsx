@@ -4,65 +4,65 @@ import CourseCard from './CourseCard';
 
 const categories = [
   'All Programs',
-  'UX/UI Design',
-  'Graphic Design',
-  'Product Design',
-  'Frontend Design',
-  'Backend Design',
+  'Investing',
+  'Personal Finance',
+  'Financial Planning',
+  'Economics',
+  'Financial Analysis',
 ];
 
 const sampleCourses = [
   {
     id: 1,
-    title: 'Product Management Basic Course',
+    title: 'Financial Analysis Fundamentals',
     description:
-      'Master the fundamentals of product management with real-world case studies and practical exercises.',
+      'Learn the basics of financial analysis and start making data-driven financial decisions.',
     price: 399,
     originalPrice: 599,
-    students: 245,
+    students: 1245,
     rating: 4.8,
     image:
       'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80',
-    category: 'Product Design',
+    category: 'Financial Analysis',
   },
   {
     id: 2,
-    title: 'IBM Data Science Professional Certificate',
+    title: 'Investing in the Stock Market',
     description:
-      'Kickstart your career in data science & ML. Build data science skills, learn Python & SQL.',
+      'Master the fundamentals of stock market investing and build a strong portfolio.',
     price: 499,
     originalPrice: 699,
-    students: 1523,
+    students: 2523,
     rating: 4.9,
     image:
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80',
-    category: 'Backend Design',
+    category: 'Investing',
   },
   {
     id: 3,
-    title: 'The Science of Well-Being',
+    title: 'Personal Finance Management',
     description:
-      'Learn the science behind happiness and build more productive habits.',
+      'Gain control over your finances and learn how to save, invest, and plan for your future.',
     price: 199,
     originalPrice: 299,
     students: 3242,
     rating: 4.7,
     image:
       'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80',
-    category: 'UX/UI Design',
+    category: 'Personal Finance',
   },
   {
     id: 4,
-    title: 'Python for Everybody Specialization',
+    title: 'Economics 101: Understanding the Basics',
     description:
-      'Learn to Program and Analyze Data with Python. Develop programs to gather, clean, analyze, and visualize data.',
+      'Get a solid introduction to economics and understand key principles in finance and business.',
     price: 299,
     originalPrice: 499,
     students: 2845,
     rating: 4.9,
     image:
       'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80',
-    category: 'Backend Design',
+    category: 'Economics',
   },
 ];
 
@@ -83,19 +83,19 @@ const CoursesPage = () => {
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        {/* <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2 text-xl font-semibold">
-            <Laptop className="h-6 w-6" />
-            <span>Your Logo</span>
+           
+            
           </div>
-        </div>
+        </div> */}
 
         {/* Search Bar */}
         <div className="relative mb-8">
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <input
             type="text"
-            placeholder="Search for courses..."
+            placeholder="Search for financial courses..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black/5 focus:border-black transition-colors"
@@ -104,7 +104,7 @@ const CoursesPage = () => {
 
         {/* Popular Courses Section */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-6">Popular Courses</h2>
+          <h2 className="text-2xl font-bold mb-6">Popular Financial Courses</h2>
 
           {/* Categories */}
           <div className="flex gap-4 mb-6 overflow-x-auto pb-2">

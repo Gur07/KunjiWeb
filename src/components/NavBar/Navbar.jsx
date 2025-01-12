@@ -12,7 +12,7 @@ function Navbar() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <CreditCard className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-bold">FinTech</span>
+              <span className="ml-2 text-xl font-medium">KUNJI</span>
             </div>
                   <div className="flex items-center space-x-8">
                   <NavLink
@@ -21,7 +21,7 @@ function Navbar() {
                             `block py-2 pr-4 pl-3 duration-200 border-b ${isActive?'text-orange-700':'text-gray-700'} border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-700 lg:p-0`
                         }
                     >
-                            home                
+                            Home                
                     </NavLink>
               
                     <NavLink

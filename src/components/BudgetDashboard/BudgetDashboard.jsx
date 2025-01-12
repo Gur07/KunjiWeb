@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Line, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -59,6 +59,21 @@ const BudgetDashboard = () => {
     healthcare: "#FF9F40",
     others: "#C9CBCF",
   };
+
+  // Load data from localStorage when the component mounts
+  useEffect(() => {
+    const storedIncome = localStorage.getItem("totalIncome");
+    const storedExpenses = JSON.parse(localStorage.getItem("expenses"));
+
+    if (storedIncome) setTotalIncome(parseFloat(storedIncome));
+    if (storedExpenses) setExpenses(storedExpenses);
+  }, []);
+
+  // Save data to localStorage whenever state changes
+  useEffect(() => {
+    localStorage.setItem("totalIncome", totalIncome);
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }, [totalIncome, expenses]);
 
   const addIncome = () => {
     if (income && !isNaN(income)) {
@@ -164,9 +179,7 @@ const BudgetDashboard = () => {
               <PieChart className="w-5 h-5 text-blue-500" />
             </div>
             <p
-              className={`text-2xl font-bold mt-2 ${
-                balance >= 0 ? "text-green-500" : "text-red-500"
-              }`}
+              className={`text-2xl font-bold mt-2 ${balance >= 0 ? "text-green-500" : "text-red-500"}`}
             >
               ₹{balance.toFixed(2)}
             </p>
@@ -273,7 +286,6 @@ const BudgetDashboard = () => {
                     <td>{exp.category}</td>
                     <td>₹{exp.amount.toFixed(2)}</td>
                     <td>{exp.note}</td>
-
                     <td>
                       <button
                         onClick={() => removeExpense(index)}

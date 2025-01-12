@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_KEY = process.env.API_KEY
-const BASE_URL = process.env.BASE_URL
+const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const ArticleSection = () => {
   const [articles, setArticles] = useState([]);
@@ -23,7 +23,7 @@ const ArticleSection = () => {
             economictimes.indiatimes.com,moneycontrol.com,business-standard.com,
             livemint.com,indiatoday.in,hindustantimes.com
           `,
-          pageSize: 50,
+          pageSize: 20,
           apiKey: API_KEY,
         },
       });
@@ -44,37 +44,35 @@ const ArticleSection = () => {
   }, []);
 
   return (
-    <div className="w-full min-h-screen ">
-      <h1 className="text-center text-5xl font-bold text-violet-900 mb-8">
+    <div className="min-h-screen bg-gray-50 p-6">
+      <h1 className="ml-40 text-left text-3xl font-bold text-black mb-8">
         Articles and News
       </h1>
-      <div className="container mx-auto flex flex-wrap justify-center gap-6">
+      <div className="container w-auto flex flex-wrap justify-center gap-16">
         {articles.map((article, index) => (
           <a
             key={index}
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center bg-white border border-blue-200 rounded-lg shadow-md md:flex-row md:max-w-xl hover:bg-blue-50 dark:border-violet-700 dark:bg-violet-100 dark:hover:bg-violet-200 m-2"
+            className="flex flex-col items-center border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow bg-white hover:bg-gray-100 m-2 w-full md:w-auto md:max-w-xs"
           >
             <img
-              className="object-cover aspect-square p-2 w-full rounded-2xl h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+              className="object-cover aspect-square p-2 w-full rounded-xl h-44  md:w-50"
               src={
                 article.urlToImage ||
                 "https://assets.toptal.io/images?url=https%3A%2F%2Fbs-uploads.toptal.io%2Fblackfish-uploads%2Fcomponents%2Fblog_post_page%2F4087184%2Fcover_image%2Fretina_500x200%2FUntitled-4e06fb2b6d487f6550add2b1a007847b.png"
               }
               alt={article.title}
             />
-            <div className="flex flex-col justify-between p-4 leading-normal">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-blue-900 dark:text-violet-900">
+            <div className="p-4">
+              <h5 className="mb-2 text-xl font-semibold text-gray-900">
                 {article.title.slice(0, 50)}
               </h5>
-              <p className="mb-3 font-normal text-gray-700 dark:text-violet-900">
-                {article.description
-                  ? article.description.slice(0, 100)
-                  : "   "}
+              <p className="mb-3 text-gray-600 text-sm">
+                {article.description ? article.description.slice(0, 100) : "   "}
               </p>
-              <span className="text-blue-700 dark:text-violet-800 hover:text-blue-900 dark:hover:text-violet-900">
+              <span className="text-blue-600 hover:text-blue-800">
                 Find out more →
               </span>
             </div>

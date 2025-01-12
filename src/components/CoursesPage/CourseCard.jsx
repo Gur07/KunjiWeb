@@ -27,10 +27,10 @@ const CourseCard = ({
         <h3 className="font-semibold text-lg mb-1 line-clamp-2">{title}</h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">{description}</p>
         <div className="flex items-center gap-2">
-          <span className="text-lg font-bold">${price}</span>
+          <span className="text-lg font-bold">₹{price}</span>
           {originalPrice > price && (
             <span className="text-gray-500 line-through text-sm">
-              ${originalPrice}
+              ₹{originalPrice}
             </span>
           )}
         </div>
