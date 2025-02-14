@@ -2,12 +2,15 @@ import { StrictMode } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import i18n from './i18n/config'  
 import App from './App.jsx'
 import DashboardPage from './components/dashboard/Dashboard.jsx'
 import CoursesPage from './components/CoursesPage/CoursesPage.jsx'
 import BudgetDashboard from "./components/BudgetDashboard/BudgetDashboard.jsx"
 import ArticleSection from './components/ArticleSection/ArticleSection.jsx'
 import AuthContainer from './components/SignRe/AuthContainer.jsx'
+import ProfilePage from './components/Profile/ProfilePage.jsx'
+import { LanguageProvider } from './context/LanguageContext'
 
 const router = createBrowserRouter([
   {
@@ -16,31 +19,39 @@ const router = createBrowserRouter([
     children:[
       {
         path: '',
-        element:<DashboardPage />
+        element: <DashboardPage />
       },
       {
-        path: '/courses',
+        path: 'courses',
         element: <CoursesPage />
       },
       {
-        path: '/budget',
-        element:<BudgetDashboard />
+        path: 'budget',
+        element: <BudgetDashboard />
       },
       {
-        path: '/article',
-        element:<ArticleSection />
+        path: 'articles',
+        element: <ArticleSection />
       },
       {
-        path: '/sign',
-        element: <AuthContainer />
+        path: 'profile',
+        element: <ProfilePage />
       }
     ]
+  },
+  {
+    path: '/auth',
+    element: <AuthContainer />
   }
 ])
 
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
-)
+// Wait for i18n to initialize before rendering
+i18n.init().then(() => {
+  createRoot(document.getElementById('root')).render(
+    <StrictMode>
+      <LanguageProvider>
+        <RouterProvider router={router} />
+      </LanguageProvider>
+    </StrictMode>
+  )
+})
