@@ -7,7 +7,7 @@ export function VideoCard({ video }) {
 
   return (
     <div 
-      onClick={() => navigate(`/video/${video.id}`)}
+      onClick={() => navigate(`video/${video.id}`)}
       className="group cursor-pointer bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
     >
       <div className="relative">

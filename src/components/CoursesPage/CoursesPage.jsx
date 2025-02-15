@@ -3,12 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { Laptop, Search } from 'lucide-react';
 import CourseCard from './CourseCard';
 import { VideoCard } from './VideoCard';
-import { videos } from './Data';
+import axios from 'axios';
+
+import { useItemContext } from '../../context/ItemContext.jsx';
 
 const CoursesPage = () => {
   const { t, i18n } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('allPrograms');
+  const { videos } = useItemContext();
 
   const categoryKeys = [
     'allPrograms',
@@ -129,6 +132,7 @@ const CoursesPage = () => {
         {videos.map((video) => (
           <VideoCard key={video.id} video={video} />
         ))}
+
       </div>
         <br />
         {/* Course Grid */}

@@ -11,6 +11,7 @@ import ArticleSection from './components/ArticleSection/ArticleSection.jsx'
 import AuthContainer from './components/SignRe/AuthContainer.jsx'
 import ProfilePage from './components/Profile/ProfilePage.jsx'
 import { LanguageProvider } from './context/LanguageContext'
+import { VideoPlayer } from './components/CoursesPage/VideoPlayer.jsx'
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,12 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <ProfilePage />
+      },
+      {
+        path: 'courses/video/:id',
+        element: <VideoPlayer />
       }
+      
     ]
   },
   {
