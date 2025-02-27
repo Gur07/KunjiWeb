@@ -12,6 +12,7 @@ import AuthContainer from './components/SignRe/AuthContainer.jsx'
 import ProfilePage from './components/Profile/ProfilePage.jsx'
 import { LanguageProvider } from './context/LanguageContext'
 import { VideoPlayer } from './components/CoursesPage/VideoPlayer.jsx'
+import Opportunity from './components/Opportunity/Oppurtunity.jsx'
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: 'courses/video/:id',
         element: <VideoPlayer />
+      },
+      {
+        path: 'opo',
+        element: <Opportunity/>
       }
       
     ]

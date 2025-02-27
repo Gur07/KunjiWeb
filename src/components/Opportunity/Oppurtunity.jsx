@@ -1,87 +1,120 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { TrendingUp, Users, Target, Award } from 'lucide-react';
+import React, { useState } from "react";
+import { Search, Filter, Building2, Tag } from "lucide-react";
 
-const opportunities = [
-  {
-    id: 1,
-    icon: <TrendingUp className="h-6 w-6" />,
-    title: 'opportunity.stockMarket',
-    description: 'opportunity.stockMarketDesc',
-    link: '/courses/stock-market',
-  },
-  {
-    id: 2,
-    icon: <Users className="h-6 w-6" />,
-    title: 'opportunity.mutualFunds',
-    description: 'opportunity.mutualFundsDesc',
-    link: '/courses/mutual-funds',
-  },
-  {
-    id: 3,
-    icon: <Target className="h-6 w-6" />,
-    title: 'opportunity.fixedDeposits',
-    description: 'opportunity.fixedDepositsDesc',
-    link: '/courses/fixed-deposits',
-  },
-  {
-    id: 4,
-    icon: <Award className="h-6 w-6" />,
-    title: 'opportunity.goldInvestment',
-    description: 'opportunity.goldInvestmentDesc',
-    link: '/courses/gold-investment',
-  },
+const schemeGenres = [
+  "Agriculture", "Education", "Employment", "Healthcare", "Housing",
+  "Small Business", "Women Empowerment", "Skill Development", "Rural Development",
+  "Social Security", "Technology", "Environment", "Infrastructure", "Tourism",
+  "Financial Inclusion"
 ];
 
-const OpportunityCard = ({ icon, title, description, link }) => {
-  const { t } = useTranslation();
-  
+const genericImages = [
+  "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=500",
+  "https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80&w=500",
+  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=500",
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=500",
+  "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=500",
+  "https://images.unsplash.com/photo-1604594849809-dfedbc827105?auto=format&fit=crop&q=80&w=500"
+];
+
+const App = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [schemes, setSchemes] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchSchemes = async () => {
+    setLoading(true);
+    try {
+      await fetch(`/api/search?query=${encodeURIComponent(searchQuery)}&genre=${encodeURIComponent(selectedGenre)}`);
+      const response = await fetch("/schemes.json");
+      const data = await response.json();
+      const schemesWithImages = data.map((scheme) => ({
+        ...scheme,
+        image: genericImages[Math.floor(Math.random() * genericImages.length)]
+      }));
+      setSchemes(schemesWithImages);
+    } catch (error) {
+      console.error("Error fetching schemes:", error);
+    }
+    setLoading(false);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetchSchemes();
+  };
+
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-      <div className="flex items-center space-x-4">
-        <div className="flex-shrink-0 bg-blue-100 rounded-lg p-3 text-blue-600">
-          {icon}
-        </div>
-        <div>
-          <h3 className="text-lg font-medium text-gray-900">{t(title)}</h3>
-          <p className="mt-1 text-sm text-gray-500">{t(description)}</p>
-        </div>
-      </div>
-      <div className="mt-4">
-        <a
-          href={link}
-          className="text-sm font-medium text-blue-600 hover:text-blue-500"
-        >
-          {t('opportunity.learnMore')} &rarr;
-        </a>
-      </div>
-    </div>
-  );
-};
+    <div className="min-h-screen bg-gray-50">
+      <header className="bg-black text-white py-6 text-center text-3xl font-bold">Opportunities</header>
+      <main className="max-w-7xl mx-auto px-4 py-8">
+        <form onSubmit={handleSearch} className="mb-8 flex flex-col md:flex-row gap-4">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+            <input
+              type="text"
+              className="w-full pl-10 pr-3 py-3 border-2 border-black rounded-lg focus:ring-2 focus:ring-black"
+              placeholder="Search schemes..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <div className="relative">
+            <Filter className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+            <select
+              className="w-full md:w-64 pl-10 pr-3 py-3 border-2 border-black rounded-lg focus:ring-2 focus:ring-black"
+              value={selectedGenre}
+              onChange={(e) => setSelectedGenre(e.target.value)}
+            >
+              <option value="">All Categories</option>
+              {schemeGenres.map((genre) => (
+                <option key={genre} value={genre}>{genre}</option>
+              ))}
+            </select>
+          </div>
+          <button
+            type="submit"
+            className="md:w-32 py-3 px-6 bg-black text-white rounded-lg hover:bg-gray-800 flex items-center justify-center gap-2"
+          >
+            <Search className="h-5 w-5" /> Search
+          </button>
+        </form>
 
-const Opportunity = () => {
-  const { t } = useTranslation();
+        {loading && (
+          <div className="text-center py-12">
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-black border-r-transparent"></div>
+          </div>
+        )}
 
-  return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900">
-            {t('opportunity.title')}
-          </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            {t('opportunity.subtitle')}
-          </p>
-        </div>
-
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2">
-          {opportunities.map((opportunity) => (
-            <OpportunityCard key={opportunity.id} {...opportunity} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {schemes.map((scheme) => (
+            <a
+              key={scheme.id}
+              href={`/scheme/${scheme.id}`}
+              className="block bg-white rounded-lg border-2 border-black hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all"
+            >
+              <img src={scheme.image} alt={scheme.title} className="w-full h-48 object-cover rounded-t-lg" />
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Building2 className="h-4 w-4 text-gray-600" />
+                  <span className="text-sm text-gray-600">{scheme.govtBody}</span>
+                </div>
+                <h3 className="text-xl font-bold text-black mb-2">{scheme.title}</h3>
+                <p className="text-gray-600 line-clamp-2">{scheme.description}</p>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  <Tag className="h-4 w-4 text-gray-600" />
+                  {scheme.tags.map((tag, index) => (
+                    <span key={index} className="px-2 py-1 text-xs bg-gray-100 rounded-full">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </a>
           ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 };
 
-export default Opportunity;
+export default App;

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "PM Kisan Samman Nidhi",
+    "govtBody": "Ministry of Agriculture",
+    "description": "Direct income support of \u20b96000 per year to farmer families paid in three equal installments of \u20b92000 each, every four months.",
+    "tags": [
+      "Agriculture",
+      "Direct Benefit Transfer",
+      "Farmers",
+      "Income Support"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Startup India Seed Fund",
+    "govtBody": "Ministry of Commerce and Industry",
+    "description": "Financial assistance up to \u20b95 crore to startups for proof of concept, prototype development, product trials, and market entry.",
+    "tags": [
+      "Startup",
+      "Business",
+      "Funding",
+      "Innovation"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "National Education Scholarship",
+    "govtBody": "Ministry of Education",
+    "description": "Merit-based scholarships for students pursuing higher education in recognized institutions across India.",
+    "tags": [
+      "Education",
+      "Scholarship",
+      "Students",
+      "Higher Education"
+    ]
+  }
+]

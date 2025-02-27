@@ -19,7 +19,7 @@ const ArticleSection = () => {
           sortBy: "publishedAt",
           language: "en",
           domains: `
-            investopedia.com,nerdwallet.com,forbes.com,cnbc.com,marketwatch.com,
+            investopedia.com,nerdwallet.com,cnbc.com,marketwatch.com,
             economictimes.indiatimes.com,moneycontrol.com,business-standard.com,
             livemint.com,indiatoday.in,hindustantimes.com
           `,
