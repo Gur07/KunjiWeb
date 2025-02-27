@@ -5,7 +5,8 @@ export default {
     courses: 'Courses',
     budget: 'Budget',
     article: 'Articles',
-    profile: 'Profile'
+    profile: 'Profile',
+    opportunities: 'Opportunities'
   },
   budget: {
     overview: 'Budget Overview',

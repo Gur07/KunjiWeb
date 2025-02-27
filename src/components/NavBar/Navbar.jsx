@@ -5,7 +5,7 @@ import { languages } from '../../i18n/languages';
 
 import {
     Home, BookOpen, PiggyBank, Newspaper, User,
-    CreditCard
+    CreditCard, Briefcase
 } from 'lucide-react';
 
 function Navbar() {
@@ -19,7 +19,8 @@ function Navbar() {
         { path: '/', icon: <Home size={20} />, label: t('nav.home') },
         { path: '/courses', icon: <BookOpen size={20} />, label: t('nav.courses') },
         { path: '/budget', icon: <PiggyBank size={20} />, label: t('nav.budget') },
-        { path: 'articles', icon: <Newspaper size={20} />, label: t('nav.article') },
+        { path: '/opportunities', icon: <Briefcase size={20} />, label: t('nav.opportunities') },
+        { path: '/articles', icon: <Newspaper size={20} />, label: t('nav.article') },
         { path: '/profile', icon: <User size={20} />, label: t('nav.profile') },
     ];
 

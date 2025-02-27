@@ -5,7 +5,8 @@ export default {
     courses: 'ಪಠ್ಯಕ್ರಮಗಳು',
     budget: 'ಬಜೆಟ್',
     article: 'ಲೇಖನ',
-    profile: 'ಪ್ರೊಫೈಲ್'
+    profile: 'ಪ್ರೊಫೈಲ್',
+    opportunities: 'ಅವಕಾಶಗಳು'
   },
   budget: {
     overview: 'ಬಜೆಟ್ ಅವಲೋಕನ',

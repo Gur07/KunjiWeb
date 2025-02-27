@@ -32,6 +32,10 @@ const router = createBrowserRouter([
         element: <BudgetDashboard />
       },
       {
+        path: 'opportunities',
+        element: <Opportunity />
+      },
+      {
         path: 'articles',
         element: <ArticleSection />
       },

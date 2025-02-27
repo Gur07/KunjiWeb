@@ -18,8 +18,8 @@ const genericImages = [
 ];
 
 const App = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedGenre, setSelectedGenre] = useState("");
+  const [searchQuery, setSearchQuery] = useState("Finance");
+  const [selectedGenre, setSelectedGenre] = useState("Finance");
   const [schemes, setSchemes] = useState([]);
   const [loading, setLoading] = useState(false);
 
